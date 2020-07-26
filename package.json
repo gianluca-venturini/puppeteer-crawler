@@ -5,11 +5,9 @@
   "author": "Gianluca Venturini <gianluca@stellarite.io>",
   "license": "MIT",
   "scripts": {
-    "build": "PROJECTS=frontend,backend webpack --progress --colors",
-    "test": "PROJECTS=test webpack --progress --colors && node --inspect ./node_modules/jasmine/bin/jasmine.js dist/test.js",
-    "build-watch": "PROJECTS=frontend,backend WATCH=true webpack --progress --colors",
-    "start": "node --inspect dist/server.js",
-    "build-hot-reload": "PROJECTS=frontend webpack-dev-server --mode=development",
+    "build": "PROJECTS=crawl webpack --progress --colors",
+    "build-watch": "PROJECTS=frontend WATCH=true webpack --progress --colors",
+    "start": "node --inspect dist/crawl.js",
     "clean": "rm -rf node_modules/ dist/"
   },
   "engines": {
@@ -37,6 +35,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@types/aws-lambda": "^8.10.59",
     "express": "^4.17.1"
   }
 }
