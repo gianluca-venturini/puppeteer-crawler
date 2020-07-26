@@ -1,8 +1,8 @@
-# Express React Webpack starter
-A starter Webpack 4 configuration for basic projects with Express and React.
+# Puppeteer Crawler
+A starter crawler built with Puppeteer and meant to be deployed for AWS lambda functions.
 
 ## Features
-- Build single page web apps with typescript.
+- Build lambda functions
 
 ## Dependencies
 - Install `node`
@@ -23,13 +23,8 @@ A starter Webpack 4 configuration for basic projects with Express and React.
 
 ## Usage
 - Install dependencies: `yarn install`
-- Build application (both frontend and backend in http://localhost:8080): `yarn build`
-    - Some browser automatically redirects you to `https` so make sure to disable the automatic redirect
-- Watch for changes and build application: `yarn build-watch`
-- Build frontend, watch for changes and hot reload (port 8000): `yarn build-hot-reload`
-    - All the backend requests will be forwarded to port 8080 so you need to run the backend
+- Build lambda function: `yarn build`
 - Run application (port 8080): `yarn start`
-- Run tests: `yarn test`
 - Remove all the generated files: `yarn clean`
 
 ## Useful links
