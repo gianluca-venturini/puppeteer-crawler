@@ -67,6 +67,8 @@ const backendBuild = (name, entryFile, outputFile = 'server.js') => {
 const availableProjects = {
 
     crawl: backendBuild('crawl', './src/backend/crawl.ts', 'crawl.js'),
+
+    test: backendBuild('test', './src/test.ts', 'test.js'),
     
 };
 
