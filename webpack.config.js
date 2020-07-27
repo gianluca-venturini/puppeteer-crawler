@@ -66,7 +66,7 @@ const backendBuild = (name, entryFile, outputFile = 'server.js') => {
 
 const availableProjects = {
 
-    crawl: backendBuild('crawl', './src/backend/crawl.ts', 'crawl.js'),
+    crawl_calorieking: backendBuild('crawl_calorieking', './src/backend/crawl_calorieking.ts', 'crawl_calorieking.js'),
 
     test: backendBuild('test', './src/test.ts', 'test.js'),
     

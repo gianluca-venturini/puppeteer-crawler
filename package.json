@@ -5,10 +5,9 @@
   "author": "Gianluca Venturini <gianluca@stellarite.io>",
   "license": "MIT",
   "scripts": {
-    "build": "PROJECTS=crawl webpack --progress --colors",
+    "build": "PROJECTS=crawl_calorieking webpack --progress --colors",
     "test": "PROJECTS=test webpack --progress --colors && node --inspect ./node_modules/jasmine/bin/jasmine.js dist/test.js",
     "build-watch": "PROJECTS=frontend WATCH=true webpack --progress --colors",
-    "start": "node --inspect dist/crawl.js",
     "clean": "rm -rf node_modules/ dist/"
   },
   "engines": {
