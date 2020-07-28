@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PROJECTS = (process.env.PROJECTS || '').split(',');
 const IS_WATCH = !!process.env.WATCH;
