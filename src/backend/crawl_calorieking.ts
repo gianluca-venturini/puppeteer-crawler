@@ -4,10 +4,18 @@ import * as chromium from 'chrome-aws-lambda';
 
 
 export const handler = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> => {
-    // const queries = JSON.stringify(event.queryStringParameters);
-    // const { url, encodedSelectors } = queries;
-    // const selectors = decodeURIComponent(encodedSelectors);
-    console.log('start');
+    console.log('event', event);
+    const queries = event.queryStringParameters;
+
+    if (!queries || !queries.url) {
+        return {
+            statusCode: 400,
+            body: 'Did you forget `url`?'
+        }
+    }
+
+    const url = queries.url;
+    console.log('start', JSON.stringify(event.queryStringParameters));
 
     const browser = await puppeteer.launch({
         executablePath: await chromium.executablePath,
@@ -16,7 +24,7 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
         headless: chromium.headless
     });
     const page = await browser.newPage();
-    await page.goto('https://www.calorieking.com/us/en/foods/f/calories-in-rice-arborio-rice-uncooked/jyPc0MwBR5SCiBKCgc17uw');
+    await page.goto(url);
 
     await mouseDownElement(page, '//div[./p[text() = "Serving"]]/div/div');
     await clickElement(page, '//li[@data-value="2" and text()="g"]');
