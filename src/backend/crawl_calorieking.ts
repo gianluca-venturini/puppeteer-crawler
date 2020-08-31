@@ -20,7 +20,7 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
     const browser = await puppeteer.launch({
         executablePath: await chromium.executablePath,
         args: chromium.args,
-        defaultViewport: { width: 400, height: 900 },
+        defaultViewport: { width: 400, height: 3000 }, // necessary to include all the params in the visible part of the screen
         headless: chromium.headless
     });
     const page = await browser.newPage();
@@ -30,12 +30,16 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
     await clickElement(page, '//li[@data-value="2" and text()="g"]');
     await inputElement(page, '//div[./p[text() = "Quantity"]]//input', '100');
     // await new Promise(resolve => setTimeout(() => resolve(), 10));
-    
+
     await page.waitForXPath('//tr[./th/span[text()="Fat"]]/td/span');
     const fat = await getTextElement(page, '//tr[./th/span[text()="Fat"]]/td/span');
     const carbs = await getTextElement(page, '//tr[./th/span[text()="Carbs"]]/td/span');
     const fiber = await getTextElement(page, '//tr[./th/span[text()="Fiber"]]/td/span');
     const protein = await getTextElement(page, '//tr[./th/span[text()="Protein"]]/td/span');
+    const satFat = await getTextElement(page, '//tr[./th/span[text()="Saturated Fat"]]/td');
+    const polyUnsatFat = await getTextElement(page, '//tr[./th/span[text()="Polyunsaturated Fat"]]/td');
+    const monoUnsatFat = await getTextElement(page, '//tr[./th/span[text()="Monounsaturated Fat"]]/td');
+    const sugars = await getTextElement(page, '//tr[./th/span[text()="Sugars"]]/td');
 
     return {
         statusCode: 200,
@@ -43,7 +47,11 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
             fat,
             carbs,
             fiber,
-            protein
+            protein,
+            satFat,
+            polyUnsatFat,
+            monoUnsatFat,
+            sugars
         })
     }
 }
