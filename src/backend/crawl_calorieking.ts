@@ -36,10 +36,10 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
     const carbs = await getTextElement(page, '//tr[./th/span[text()="Carbs"]]/td/span');
     const fiber = await getTextElement(page, '//tr[./th/span[text()="Fiber"]]/td/span');
     const protein = await getTextElement(page, '//tr[./th/span[text()="Protein"]]/td/span');
-    const satFat = await getTextElement(page, '//tr[./th/span[text()="Saturated Fat"]]/td');
-    const polyUnsatFat = await getTextElement(page, '//tr[./th/span[text()="Polyunsaturated Fat"]]/td');
-    const monoUnsatFat = await getTextElement(page, '//tr[./th/span[text()="Monounsaturated Fat"]]/td');
-    const sugars = await getTextElement(page, '//tr[./th/span[text()="Sugars"]]/td');
+    const satFat = await getTextElement(page, '//tr[./th/a[text()="Saturated Fat"]]/td');
+    const polyUnsatFat = await getTextElement(page, '//tr[./th/a[text()="Polyunsaturated Fat"]]/td');
+    const monoUnsatFat = await getTextElement(page, '//tr[./th/a[text()="Monounsaturated Fat"]]/td');
+    const sugars = await getTextElement(page, '//tr[./th/a[text()="Sugars"]]/td');
 
     return {
         statusCode: 200,
