@@ -94,5 +94,9 @@ async function inputElement(page: puppeteer.Page, xSelector: string, text: strin
 async function getTextElement(page: puppeteer.Page, xSelector: string) {
     console.log('getTextElement', xSelector);
     const elements = await page.$x(xSelector);
-    return await elements[0].evaluate(n => n.childNodes[0].textContent);
+    const text = await elements[0].evaluate(n => n.childNodes[0].textContent);
+    if (text === '< 0.1 g') {
+        return 0;
+    }
+    return parseInt(text, 10);
 }
