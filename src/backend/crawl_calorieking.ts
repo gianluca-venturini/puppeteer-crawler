@@ -98,5 +98,5 @@ async function getTextElement(page: puppeteer.Page, xSelector: string) {
     if (text === '< 0.1 g') {
         return 0;
     }
-    return parseInt(text, 10);
+    return parseFloat(text);
 }
