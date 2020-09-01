@@ -27,8 +27,8 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
     await page.goto(url);
 
     await mouseDownElement(page, '//div[./p[text() = "Serving"]]/div/div');
-    await clickElement(page, '//li[@data-value="2" and text()="g"]');
-    await inputElement(page, '//div[./p[text() = "Quantity"]]//input', '100');
+    await clickElement(page, '//li[text()="g"]');
+    await inputElement(page, '//div[./p[text()="Quantity"]]//input', '100');
     // await new Promise(resolve => setTimeout(() => resolve(), 10));
 
     await page.waitForXPath('//tr[./th/span[text()="Fat"]]/td/span');
