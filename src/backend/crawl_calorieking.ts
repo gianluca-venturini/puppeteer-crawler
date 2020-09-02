@@ -4,14 +4,14 @@ import * as chromium from 'chrome-aws-lambda';
 import * as Lru from 'lru-cache';
 
 interface Stats {
-    fat: number;
-    carbs: number;
-    fiber: number;
-    protein: number;
-    satFat: number;
-    polyUnsatFat: number;
-    monoUnsatFat: number;
-    sugars: number;
+    fat: number | string;
+    carbs: number | string;
+    fiber: number | string;
+    protein: number | string;
+    satFat: number | string;
+    polyUnsatFat: number | string;
+    monoUnsatFat: number | string;
+    sugars: number | string;
 }
 
 const cache = new Lru<string, Stats>({
@@ -119,9 +119,12 @@ async function inputElement(page: puppeteer.Page, xSelector: string, text: strin
 async function getTextElement(page: puppeteer.Page, xSelector: string) {
     console.log('getTextElement', xSelector);
     const elements = await page.$x(xSelector);
-    const text = await elements[0].evaluate(n => n.childNodes[0].textContent);
+    const text = await elements[0]?.evaluate(n => n.childNodes[0].textContent);
     if (text === '< 0.1 g' || text === '< 0.1') {
         return 0;
+    }
+    if (!text) {
+        return 'N/A';
     }
     return parseFloat(text);
 }
